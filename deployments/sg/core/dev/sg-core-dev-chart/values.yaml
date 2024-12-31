@@ -1,5 +1,5 @@
 services:
-  - name: customer-service
+  - name: node-service
     image: dockette/nodejs
     repository:
       image: alpine/node
@@ -7,7 +7,7 @@ services:
     port: 3001
     replicas: 1
     namespace: hugosave-services
-  - name: order-service
+  - name: node2-service
     image: mohammedamrath/orderservice
     repository:
       image: dockette/nodejs
