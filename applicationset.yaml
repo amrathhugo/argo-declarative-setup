@@ -8,21 +8,48 @@ spec:
   generators:
     - list:
         elements:
-          - cluster: dev
+          - customer: pk
+            app: core
+            env: dev
             url: https://kubernetes.default.svc
-          - cluster: prod
+          - customer: pk
+            app: core
+            env: prod
             url: https://kubernetes.default.svc
-          - cluster: test
+          - customer: pk
+            app: distribute
+            env: dev
             url: https://kubernetes.default.svc
+          - customer: sg
+            app: distribute
+            env: prod
+            url: https://kubernetes.default.svc
+          - customer: sg
+            app: core
+            env: dev
+            url: https://kubernetes.default.svc
+          - customer: sg
+            app: core
+            env: prod
+            url: https://kubernetes.default.svc
+          - customer: sg
+            app: distribute
+            env: dev
+            url: https://kubernetes.default.svc
+          - customer: sg
+            app: distribute
+            env: prod
+            url: https://kubernetes.default.svc
+
   template:
     metadata:
-      name: "{{.cluster}}"
+      name: "{{.cluster}}-environment"
     spec:
       project: my-project
       source:
         repoURL: https://github.com/amrathhugo/argo-declarative-setup.git
         targetRevision: HEAD
-        path: deployments/{{.cluster}}/helm/tomato-chart
+        path: deployments/{{.customer}}/{{.app}}/{{.env}}/{{.customer}}-{{.app}}-{{.env}}-chart/
       destination:
         server: "{{.url}}"
-        namespace: tomato
+        namespace: hugosave-services
