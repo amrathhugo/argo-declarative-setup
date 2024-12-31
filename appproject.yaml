@@ -21,10 +21,12 @@ spec:
       server: https://kubernetes.default.svc
       name: in-cluster
 
-  # Deny all cluster-scoped resources from being created, except for Namespace
+  # Deny all cluster-scoped resources from being created, except for Namespace and services
   clusterResourceWhitelist:
     - group: ""
       kind: Namespace
+    - group: ""
+      kind: Service
 
   # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
   namespaceResourceBlacklist:
@@ -41,6 +43,8 @@ spec:
       kind: Deployment
     - group: "apps"
       kind: StatefulSet
+    - group: "apps"
+      kind: Service
 
   # Enables namespace orphaned resource monitoring.
   orphanedResources:
