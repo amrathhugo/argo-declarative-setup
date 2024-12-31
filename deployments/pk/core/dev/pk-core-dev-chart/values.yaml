@@ -1,16 +1,14 @@
 services:
-  - name: node-service
-    image: dockette/nodejs
+  - name: customer-service
     repository:
-      image: alpine/node
+      image: amrathmd/customerservice
       tag: latest
     port: 3001
     replicas: 1
     namespace: hugosave-services
-  - name: node2-service
-    image: mohammedamrath/orderservice
+  - name: order-service
     repository:
-      image: alpine/node
+      image: mohammedamrath/orderservice
       tag: latest
     port: 3002
     replicas: 1
