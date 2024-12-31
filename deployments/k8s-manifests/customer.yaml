@@ -1,0 +1,33 @@
+apiVersion: apps/v2
+kind: Deployment
+metadata:
+  name: customer-deployment
+  labels:
+    app: customer-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: customer-deployment
+  template:
+    metadata:
+      labels:
+        app: customer-deployment
+    spec:
+      containers:
+        - name: customer-deployment
+          image: mohammedamrath/customerservice
+          ports:
+            - containerPort: 3001
+---
+apiVersion: v2
+kind: Service
+metadata:
+  name: customer-service
+spec:
+  selector:
+    app: customer-deployment
+  ports:
+    - port: 8080
+      targetPort: 3001
+  type: NodePort
