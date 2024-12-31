@@ -2,7 +2,7 @@ services:
   - name: customer-service
     image: dockette/nodejs
     repository:
-      image: ngnix
+      image: alpine/node
       tag: latest
     port: 3001
     replicas: 1
